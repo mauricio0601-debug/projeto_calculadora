@@ -14,11 +14,6 @@ def digitar(numero):
         # Informa que um novo cálculo está começando.
         novo_calculo = False
 
-    # Verifica se o visor está apresentando a mensagem de primeiro número.
-    if visor.get() == "Por favor, digite o primeiro número":
-        # Apaga a mensagem do visor.
-        visor.delete(0, tk.END)
-
     # Verifica se o visor está apresentando a mensagem de segundo número.
     elif visor.get() == "Digite o segundo número":
         # Apaga a mensagem do visor.
@@ -53,8 +48,6 @@ def limpar():
 numero1 = None
 # Inicializa a variável que armazenará a operação matemática.
 operacao = None
-# Armazena a mensagem utilizada quando falta o primeiro número.
-mensagem_erro = "Por favor, digite o primeiro número"
 # Controla se um cálculo acabou de ser realizado.
 novo_calculo = False
 
@@ -67,7 +60,7 @@ def selecionar_operacao(simbolo):
     texto = visor.get()
 
     # Verifica se existe alguma mensagem de erro no visor.
-    if texto in (mensagem_erro, "Digite o segundo número", "ERRO: divisão por zero"):
+    if texto in ("Digite o segundo número", "ERRO: divisão por zero"):
         # Apaga a mensagem apresentada.
         visor.delete(0, tk.END)
         # Limpa o primeiro número armazenado.
@@ -105,17 +98,17 @@ def calcular():
         return
 
     # Verifica se o visor está vazio e nenhuma operação foi selecionada.
-    if visor.get() == "" and operacao is None:
+    elif visor.get() == "" and operacao is None:
         # Encerra a função.
         return
 
     # Verifica se nenhuma operação matemática foi selecionada.
-    if operacao is None:
+    elif operacao is None:
         # Impede a realização do cálculo.
         return
 
     # Verifica se uma operação foi selecionada, mas o segundo número não foi digitado.
-    if visor.get() == "" and operacao is not None:
+    elif visor.get() == "" and operacao is not None:
         # Exibe uma mensagem solicitando o segundo número.
         visor.insert(tk.END, "Digite o segundo número")
         # Encerra a função.
@@ -181,7 +174,7 @@ def apagar_ultimo():
     texto = visor.get()
 
     # Verifica se o visor apresenta alguma mensagem de erro.
-    if texto in (mensagem_erro, "Digite o segundo número", "ERRO: divisão por zero"):
+    if texto in ("Digite o segundo número", "ERRO: divisão por zero"):
         # Impede que a mensagem seja apagada parcialmente.
         return
 
@@ -210,19 +203,19 @@ def decimal():
         return
 
     # Verifica se o visor está vazio.
-    if texto == "":
+    elif texto == "":
         # Insere zero e vírgula.
         visor.insert(tk.END, "0,")
         # Encerra a função.
         return
 
     # Verifica se o visor apresenta alguma mensagem de erro.
-    if texto in (mensagem_erro, "Digite o segundo número", "ERRO: divisão por zero"):
+    elif texto in ("Digite o segundo número", "ERRO: divisão por zero"):
         # Impede a inserção da vírgula.
         return
 
     # Verifica se o número ainda não possui uma vírgula.
-    if "," not in texto:
+    elif "," not in texto:
         # Insere a vírgula no final do número.
         visor.insert(tk.END, ",")
 
@@ -234,11 +227,7 @@ def validar_entrada(texto):
         return True
 
     # Verifica se o texto corresponde a alguma mensagem utilizada pela calculadora.
-    if texto in (
-        mensagem_erro,
-        "Digite o segundo número",
-        "ERRO: divisão por zero"
-    ):
+    if texto in ("Digite o segundo número","ERRO: divisão por zero"):
         # Permite que essas mensagens apareçam no visor.
         return True
 
@@ -257,16 +246,14 @@ def adicionar_efeito(botao, cor_original, cor_hover):
         # Identifica quando o cursor entra na área do botão.
         "<Enter>",
         # Altera a cor de fundo para a cor de destaque.
-        lambda evento: botao.config(bg=cor_hover)
-    )
+        lambda evento: botao.config(bg=cor_hover))
 
     # Associa outro evento ao botão quando o mouse sai da sua área.
     botao.bind(
         # Identifica quando o cursor sai da área do botão.
         "<Leave>",
-        # Restaura a cor de fundo original.
-        lambda evento: botao.config(bg=cor_original)
-    )
+        # Restaura a cor de fundo original. 
+        lambda evento: botao.config(bg=cor_original))
 
 
 # INTERFACE DA CALCULADORA
