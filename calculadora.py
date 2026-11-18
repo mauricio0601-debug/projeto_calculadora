@@ -1,4 +1,3 @@
-
 # Importa a biblioteca Tkinter, utilizada para criar a interface gráfica da calculadora.
 import tkinter as tk
 
@@ -262,7 +261,7 @@ def adicionar_efeito(botao, cor_original, cor_hover):
 janela = tk.Tk()
 
 # Define o título que aparece na parte superior da janela.
-janela.title("Teclado da Calculadora")
+janela.title("Calculadora")
 
 # Define a cor de fundo da janela.
 janela.configure(bg="#121212")
